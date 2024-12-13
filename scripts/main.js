@@ -71,4 +71,62 @@ const departments = {
     }
 }
 
-console.log(departments);
+// Opdracht 1:
+console.log("De afdeling Sales heeft " + departments.sales.numberOfEmployees + " medewerkers");
+console.log("Marketing is een leuke afdeling om te werken. " + departments.marketing.description);
+console.log("De afdeling Customer Service heeft " + departments["customer-service"].numberOfEmployees + " medewerkers");
+console.log("Sales is een uitdagende afdeling om te werken als Verkoopmanager. " + departments.sales.jobs);
+
+// Opdracht 2:
+const userInput = prompt("Over welke afdeling wil je meer informatie? Kies uit: [marketing / sales / customer-service]");
+let text = "";
+
+switch (userInput) {
+    case "marketing":
+        text = departments.marketing.description;
+        break;
+    case "sales":
+        text = departments.sales.description;
+        break;
+    case "customer-service":
+        text = departments["customer-service"].description;
+        break;
+    default:
+        text = "Dit is een ongeldige keuze. Probeer het opnieuw door de pagina te verversen.";
+        document.getElementById("error-message").textContent = "Ongeldige keuze. Probeer het opnieuw door de pagina te verversen.";
+}
+console.log("Je koos " + userInput + ". " + text);
+
+// Opdracht 3 en 4:
+console.log(userInput + " is een leuke afdeling om te werken. Er werken op dit moment " + departments[userInput].numberOfEmployees + " medewerkers.")
+
+const jobChoice = prompt("Je koos " + userInput + ". Over welke functie wil je meer weten? Voer een getal tussen 0 en 3 in. 0: "
+    + departments[userInput].jobs[0].title + ", 1: "
+    + departments[userInput].jobs[1].title + ", 2: "
+    + departments[userInput].jobs[2].title + ", 3: "
+    + departments[userInput].jobs[3].title);
+
+switch (jobChoice) {
+    case "0":
+        console.log("Je koos " + departments[userInput].jobs[0].title + ". Een uitdagende rol!" + departments.marketing.jobs[0].description);
+        break;
+    case "1":
+        console.log("Je koos " + departments[userInput].jobs[1].title + ". Een uitdagende rol!" + departments.marketing.jobs[1].description);
+        break;
+    case "2":
+        console.log("Je koos " + departments[userInput].jobs[2].title + ". Een uitdagende rol!" + departments.marketing.jobs[3].description);
+        break;
+    case "3":
+        console.log("Je koos " + departments[userInput].jobs[3].title + ". Een uitdagende rol!" + departments.marketing.jobs[4].description);
+        break;
+    default:
+        console.error("Ongeldige keuze. Probeer het opnieuw door de pagina te verversen.")
+        document.getElementById("error-message").textContent = "Ongeldige keuze. Probeer het opnieuw door de pagina te verversen.";
+}
+
+// Opdracht 5:
+document.getElementById("role-title").textContent = departments[userInput].jobs[jobChoice].title;
+document.getElementById("department-description").textContent = departments[userInput].description;
+document.getElementById("role-description").textContent = departments[userInput].jobs[jobChoice].description;
+// Ik heb de getElementById statements gewoon onderaan gezet (behalve de error),
+// omdat de pagina geloof ik sowieso alles tegelijk laadt na de prompter, maakt dat dan uit?..
